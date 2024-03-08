@@ -3,12 +3,13 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/users');
 
 exports.signup = async (req, res) => {
-  const { username, password, isAdmin } = req.body;
+  const { username, password, isAdmin, email } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(password, salt);
     const newUser = new userModel({
       username: username,
+      email: email,
       password: hashed,
       isAdmin: isAdmin,
     });
