@@ -1,5 +1,6 @@
 {
-  "name": "frontend",
+  "name": "chat-app-fe",
+  "proxy": "http://localhost:7777",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,8 +13,10 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "axios": "^1.6.7",
     "bootstrap": "5.0.0",
     "react": "^18.2.0",
+    "react-axios": "^2.0.6",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -21,6 +24,7 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.4",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
