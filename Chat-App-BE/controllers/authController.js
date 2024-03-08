@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 const userModel = require('../models/users');
 
-exports.signin = async (req, res) => {
+exports.signup = async (req, res) => {
   const { username, password, isAdmin, email } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
