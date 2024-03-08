@@ -1,14 +1,25 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+//import { toast } from 'react-toastify';
+import axios from 'axios';
+
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Gửi yêu cầu đăng nhập đến máy chủ hoặc xử lý logic đăng nhập ở đây
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const response = await axios.post('/api/signin', {
+        username,
+        password,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="login-container col-12 col-sm-4">
@@ -16,12 +27,12 @@ const Login = () => {
         <title>Log in</title>
       </Helmet>
       <div className="title">Log in</div>
-      <div className="text">Email or Username</div>
+      <div className="text">Username</div>
       <input
         type="text"
-        placeholder="Email or username ... "
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
+        placeholder="Username ... "
+        value={username}
+        onChange={(event) => setUserName(event.target.value)}
       />
 
       <div className="input-2">
@@ -42,8 +53,8 @@ const Login = () => {
       </div>
 
       <button
-        className={email && password ? 'active' : ''}
-        disabled={email && password ? false : true}
+        className={username && password ? 'active' : ''}
+        disabled={username && password ? false : true}
         onClick={handleSubmit}
       >
         Log in{' '}
