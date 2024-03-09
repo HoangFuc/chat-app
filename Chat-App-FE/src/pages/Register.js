@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 const Register = () => {
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleUserNameChange = (e) => {
-    setName(e.target.value);
+    setUserName(e.target.value);
   };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,15 +19,32 @@ const Register = () => {
   };
 
   const handleConfirmPasswordChange = (e) => {
+
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+    if (password !== confirmPassword) {
+    // Mật khẩu không khớp, yêu cầu người dùng nhập lại
+    alert("Mật khẩu không khớp. Vui lòng nhập lại.");
+    setPassword("");
+    setConfirmPassword("");
+    return;
+  }
+
+    try { 
+      const response = await axios.post('/api/signup', {
+        username,
+        email,
+        password,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
   };
   return (
     <div className="register-container col-12 col-sm-4">
@@ -38,7 +56,7 @@ const Register = () => {
       <input
         type="name"
         placeholder="UserName..."
-        value={name}
+        value={username}
         onChange={handleUserNameChange}
       />
       <div className="text">Email</div>
@@ -63,8 +81,8 @@ const Register = () => {
         onChange={handleConfirmPasswordChange}
       />
       <button
-        className={name && email && password && confirmPassword ? 'active' : ''}
-        disabled={name && email && password && confirmPassword ? false : true}
+        className={username && email && password && confirmPassword ? 'active' : ''}
+        disabled={username && email && password && confirmPassword ? false : true}
         onClick={handleSubmit}
       >
         Register{' '}
