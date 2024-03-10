@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
-//import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const Login = () => {
@@ -27,7 +26,6 @@ const Login = () => {
         <title>Log in</title>
       </Helmet>
       <div className="title">Log in</div>
-      <div className="text">Username</div>
       <input
         type="text"
         placeholder="Username ... "
