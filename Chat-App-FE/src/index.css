@@ -11,130 +11,73 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*Login Page*/
+.container-signin {
+  background-color: #94aad6;
 
-.app-container {
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-
-    .title {
-      text-align: center;
-      font-size: 25px;
-      font-weight: 600;
-      padding-top: 200px;
-    }
-
-    .text {
-      font-weight: 600;
-      padding-bottom: 3px;
-    }
-
-    input {
-      padding: 12px 7px;
-      outline: none;
-      background: #1618230f;
-      border: #1618230f;
-      margin-bottom: 7px;
-      border-radius: 3px;
-      width: 100%;
-      &:hover {
-        background-color: #dedede;
-      }
-    }
-    .input-2 {
-      position: relative;
-
-      i {
-        cursor: pointer;
-        position: absolute;
-        top: 17px;
-        right: 10px;
-      }
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: none;
-      outline: none;
-
-      &.active {
-        background-color: #fe2c55;
-        color: white;
-        cursor: pointer;
-      }
-    }
-    button[disabled='disabled'],
-    button:disabled {
-      cursor: not-allowed;
-    }
-    a {
-      padding-top: 10px;
-      text-decoration: none;
-      color: black;
-    }
-    .back {
-      text-align: center;
-      margin-top: 30px;
-      cursor: pointer;
-    }
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  .title {
+    text-align: center;
+    font-size: 38px;
   }
+  .signin {
+    background-color: #363636;
+    border-radius: 8px;
+    width: 500px;
+    color: white;
+    padding: 25px;
+  }
+  Button {
+    width: 450px;
+  }
+  a {
+    font-size: small;
+    text-decoration: none;
+  }
+  .text {
+    padding-top: 5px;
+    font-size: 13px;
+  }
+}
+/*Register Page*/
+.container-register {
+  background-color: #94aad6;
 
-  .register-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-
-    .title {
-      text-align: center;
-      font-size: 25px;
-      font-weight: 600;
-      padding-top: 200px;
-    }
-
-    .text {
-      font-weight: 600;
-      padding-bottom: 3px;
-    }
-
-    input {
-      padding: 12px 7px;
-      outline: none;
-      background: #1618230f;
-      border: #1618230f;
-      margin-bottom: 7px;
-      border-radius: 3px;
-      width: 100%;
-      &:hover {
-        background-color: #dedede;
-      }
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: none;
-      outline: none;
-
-      &.active {
-        background-color: #fe2c55;
-        color: white;
-        cursor: pointer;
-      }
-    }
-    button[disabled='disabled'],
-    button:disabled {
-      cursor: not-allowed;
-    }
-    a {
-      padding-top: 10px;
-      text-decoration: none;
-      color: black;
-    }
-    .back {
-      text-align: center;
-      margin-top: 30px;
-      cursor: pointer;
-    }
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  .title {
+    text-align: center;
+    font-size: 38px;
+  }
+  .signin {
+    background-color: #363636;
+    border-radius: 8px;
+    width: 500px;
+    color: white;
+    padding: 25px;
+  }
+  Button {
+    margin-top: 20px;
+    width: 450px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .text {
+    padding-top: 15px;
+    font-size: 15px;
   }
 }
