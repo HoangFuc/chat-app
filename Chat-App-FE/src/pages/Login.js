@@ -1,70 +1,88 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-
-const Login = () => {
-  const [username, setUserName] = useState('');
+import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
+export default function Login() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  // const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/signin', {
-        username,
-        password,
-      });
 
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+    // try {
+    //   const response = await axios.post('/api/signin', {
+    //     email,
+    //     password,
+    //   });
+    //   console.log(response.data);
+    //   toast.success('Đăng nhập thành công');
+    // } catch (error) {
+    //   toast.error('Đăng nhập thất bại');
+    // }
+    toast.success('Đăng nhập thành công');
+  };
+  const handleForgotPass = async (e) => {
+    if (!email) {
+      toast.info('Vui lòng nhập email');
+    } else if (email != db.email) {
+      toast.error('Email không tồn tại');
+    } else {
+      toast.success(
+        'Chúng tôi đã gửi link reset password vào tài khoản email của bạn'
+      );
     }
   };
   return (
-    <div className="login-container col-12 col-sm-4">
+    <div>
       <Helmet>
-        <title>Log in</title>
+        <title>Sign In</title>
       </Helmet>
-      <div className="title">Log in</div>
-      <input
-        type="text"
-        placeholder="Username ... "
-        value={username}
-        onChange={(event) => setUserName(event.target.value)}
+      <div className="container-signin">
+        <div className="signin">
+          <div className="title">Sign In</div>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div>
+                <a onClick={handleForgotPass}>Forget Password?</a>
+              </div>
+            </Form.Group>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Sign In
+            </Button>
+          </Form>
+
+          <div className="text">
+            {' '}
+            Create New Account? <a href="/register"> Sign Up</a>
+          </div>
+        </div>
+      </div>
+      <ToastContainer
+        position="bottom-center"
+        limit={1}
+        style={{ width: '500px' }}
       />
-
-      <div className="input-2">
-        <input
-          type={isShowPassword === true ? 'text' : 'password'}
-          placeholder="Password..."
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-        <i
-          className={
-            isShowPassword === true
-              ? 'fa-regular fa-eye'
-              : 'fa-regular fa-eye-slash'
-          }
-          onClick={() => setIsShowPassword(!isShowPassword)}
-        ></i>{' '}
-      </div>
-
-      <button
-        className={username && password ? 'active' : ''}
-        disabled={username && password ? false : true}
-        onClick={handleSubmit}
-      >
-        Log in{' '}
-      </button>
-      <div className="mb-3">
-        <a href="/register">Create your account</a>
-      </div>
-      <div className="back">
-        <i className="fa-regular fa-circle-left"></i> <a href="/">Go back</a>
-      </div>
     </div>
   );
-};
-
-export default Login;
+}

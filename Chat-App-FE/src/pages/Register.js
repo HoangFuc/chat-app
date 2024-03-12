@@ -1,98 +1,92 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-const Register = () => {
-  const [username, setUserName] = useState('');
+import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
+export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  // const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const handleUserNameChange = (e) => {
-    setUserName(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    // if (password !== confirmPassword) {
+    //   // Mật khẩu không khớp, yêu cầu người dùng nhập lại
+    //   alert("Mật khẩu không khớp. Vui lòng nhập lại.");
+    //   setPassword("");
+    //   setConfirmPassword("");
+    //   return;
+    // }
 
-    if (password !== confirmPassword) {
-    // Mật khẩu không khớp, yêu cầu người dùng nhập lại
-    alert("Mật khẩu không khớp. Vui lòng nhập lại.");
-    setPassword("");
-    setConfirmPassword("");
-    return;
-  }
+    //   try {
+    //     const response = await axios.post('/api/signup', {
 
-    try { 
-      const response = await axios.post('/api/signup', {
-        username,
-        email,
-        password,
-      });
+    //       email,
+    //       password,
+    //     });
 
-      console.log(response.data);
-    } catch (error) {
-        console.error(error);
-    }
+    //     console.log(response.data);
+    //   } catch (error) {
+    //       console.error(error);
+    //   }
+    toast.success('Đăng nhập thành công');
   };
   return (
-    <div className="register-container col-12 col-sm-4">
+    <div>
       <Helmet>
         <title>Register</title>
       </Helmet>
-      <div className="title">Register</div>
-      <div className="text">UserName</div>
-      <input
-        type="name"
-        placeholder="UserName..."
-        value={username}
-        onChange={handleUserNameChange}
-      />
-      <div className="text">Email</div>
-      <input
-        type="email"
-        placeholder="Email..."
-        value={email}
-        onChange={handleEmailChange}
-      />
-      <div className="text">Password</div>
-      <input
-        type="password"
-        placeholder="Password..."
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <div className="text">Confirm Password</div>
-      <input
-        type="password"
-        placeholder="ConfirmPassword..."
-        value={confirmPassword}
-        onChange={handleConfirmPasswordChange}
-      />
-      <button
-        className={username && email && password && confirmPassword ? 'active' : ''}
-        disabled={username && email && password && confirmPassword ? false : true}
-        onClick={handleSubmit}
-      >
-        Register{' '}
-      </button>
-      <div className="back">
-        <i className="fa-regular fa-circle-left"></i>{' '}
-        <a href="/login">Go back</a>
+      <div className="container-register">
+        <div className="signin">
+          <div className="title">Register</div>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Register
+            </Button>
+          </Form>
+
+          <div className="text">
+            {' '}
+            <a href="/login"> Already have an account</a>
+          </div>
+        </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        limit={1}
+        style={{ width: '500px' }}
+      />
     </div>
   );
-};
-
-export default Register;
+}
