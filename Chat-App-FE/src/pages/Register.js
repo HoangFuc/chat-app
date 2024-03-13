@@ -40,7 +40,7 @@ export default function Register() {
         <title>Register</title>
       </Helmet>
       <div className="container-register">
-        <div className="signin">
+        <div className="register">
           <div className="title">Register</div>
           <Form>
             <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -4,7 +4,7 @@ import TableUsers from './components/TableUsers';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
 import Register from './pages/Register';
-
+import ResetPassword from './pages/ResetPassword';
 function App() {
   return (
     <div className="app-container">
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Chat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/resetpassword/:id" element={<ResetPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>

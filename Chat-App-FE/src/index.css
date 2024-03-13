@@ -62,7 +62,42 @@ code {
     text-align: center;
     font-size: 38px;
   }
-  .signin {
+  .register {
+    background-color: #363636;
+    border-radius: 8px;
+    width: 500px;
+    color: white;
+    padding: 25px;
+  }
+  Button {
+    margin-top: 20px;
+    width: 450px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .text {
+    padding-top: 15px;
+    font-size: 15px;
+  }
+}
+/*Reset password*/
+.container-resetpassword {
+  background-color: #94aad6;
+
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  .title {
+    text-align: center;
+    font-size: 38px;
+  }
+  .resetpassword {
     background-color: #363636;
     border-radius: 8px;
     width: 500px;
