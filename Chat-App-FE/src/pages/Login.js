@@ -5,11 +5,12 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [isShowPassword, setIsShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,17 +26,18 @@ export default function Login() {
     // }
     toast.success('Đăng nhập thành công');
   };
-  const handleForgotPass = async (e) => {
-    if (!email) {
-      toast.info('Vui lòng nhập email');
-    } else if (email != db.email) {
-      toast.error('Email không tồn tại');
-    } else {
-      toast.success(
-        'Chúng tôi đã gửi link reset password vào tài khoản email của bạn'
-      );
-    }
-  };
+  // const handleForgotPass = async (e) => {
+  //   if (!email) {
+  //     toast.info('Vui lòng nhập email');
+  //   } else if (email != db.email) {
+  //     toast.error('Email không tồn tại');
+  //   } else {
+  //     toast.success(
+  //       'Chúng tôi đã gửi link reset password vào tài khoản email của bạn'
+  //navigate('/register');
+  //     );
+  //   }
+  // };
   return (
     <div>
       <Helmet>
@@ -64,7 +66,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div>
-                <a onClick={handleForgotPass}>Forget Password?</a>
+                {/* <a onClick={handleForgotPass}>Forget Password?</a> */}
               </div>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={handleSubmit}>
