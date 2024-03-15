@@ -7,7 +7,7 @@ exports.signup = async (req, res) => {
   const checkEmail = await userModel.findOne({
     email: email,
   });
-  if (checkEmail.length > 0) {
+  if (checkEmail) {
     res.status(500).json("Email da ton tai");
   }
   try {
