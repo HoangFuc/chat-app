@@ -1,0 +1,41 @@
+/* App.css */
+
+.app {
+  margin-top: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chat-body {
+  height: 700px;
+  overflow-y: auto;
+}
+
+.chat-messages {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.row {
+  margin-top: 400px;
+}
+
+.col-4 {
+  flex: 0 0 auto;
+  width: 33.3333333333%;
+  padding-top: 20px;
+}
