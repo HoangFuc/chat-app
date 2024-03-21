@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const authRoutes = require("./routes/auth.routes");
 const emailRoutes = require("./routes/email.routes");
+const userRouters = require("./routes/user.routes")
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 7777;
@@ -25,8 +26,10 @@ database.on("error", (error) => {
 database.once("connected", () => {
   console.log("Database Connected");
 });
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api", authRoutes);
 app.use("/api", emailRoutes);
+app.use('/api/users', userRouters);
 app.listen(PORT, console.log("==============Success run in port", PORT));
