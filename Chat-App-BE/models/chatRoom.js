@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const chatRoomSchema = new mongoose.Schema(
   {
-    members: Arrays,
+    members: Array,
   },
   {
     timestamps: true,
