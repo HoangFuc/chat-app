@@ -25,7 +25,38 @@ const createUser = async (req, res) => {
   }
 };
 
+//Controller de sua nguoi dung byId
+
+const editUser = async (req, res) => {
+  const { id } = req.params;
+  const { email, password, isAdmin } = req.body;
+
+  try {
+    const editUser = await userModel.findByIdAndUpdate(id, { email, password, isAdmin }, { new: true });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.error("Failed to edit user", error.status);
+    res.status(500).json({ message: "Failed to edit user" });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteUser = await userModel.findOneAndDelete({ _id: id, isAdmin: false });
+    if (!deleteUser) {
+      return res.status(400).json({ message: "Can not Delete Admin" });
+    }
+    return res.status(200).json({ message: "delete successfully :)))))))))))" })
+  } catch (error) {
+    console.error('Failed to delete user', error.status);
+    res.status(500).json({ message: "Failed to delete user" });
+
+  }
+}
 module.exports = {
   getUsers,
   createUser,
+  editUser,
+  deleteUser,
 };
