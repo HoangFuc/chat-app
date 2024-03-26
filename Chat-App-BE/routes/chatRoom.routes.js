@@ -8,7 +8,7 @@ const {
 } = require("../controllers/chatController");
 
 router.post("/createChat", createChat);
-router.get("/:userId", findUserChat);
-router.get("/:firstId/:secondId", findChat);
+router.get("/chat/:userId", findUserChat);
+router.get("/chat/:firstId/:secondId", findChat);
 
 module.exports = router;
