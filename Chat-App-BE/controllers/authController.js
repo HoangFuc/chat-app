@@ -3,29 +3,36 @@ const bcrypt = require("bcrypt");
 const userModel = require("../models/users");
 
 exports.signup = async (req, res) => {
+  console.log("===[SIGNUP]");
   const { password, isAdmin, email } = req.body;
-  const checkEmail = await userModel.findOne({
-    email: email,
-  });
-  if (checkEmail.length > 0) {
-    res.status(500).json("Email da ton tai");
-  }
   try {
-    const salt = await bcrypt.genSalt(10);
-    const hashed = await bcrypt.hash(password, salt);
-    const newUser = new userModel({
+    const checkEmail = await userModel.findOne({
       email: email,
-      password: hashed,
-      isAdmin: isAdmin,
     });
-    await userModel.create(newUser);
-    return res.status(200).json(newUser);
+    if (checkEmail) {
+      return res.status(500).json("Email da ton tai");
+    } else {
+      const salt = await bcrypt.genSalt(10);
+      const hashed = await bcrypt.hash(password, salt);
+      const newUser = new userModel({
+        email: email,
+        password: hashed,
+        isAdmin: isAdmin,
+      });
+      console.log("=a");
+      const data = await userModel.create(newUser);
+      console.log("==b");
+      return data
+        ? res.status(200).json(data)
+        : res.status(500).json("Hệ thống bị gián đoạn. Vui lòng thử lại");
+    }
   } catch (err) {
     res.status(500).err;
   }
 };
 
 exports.signin = async (req, res) => {
+  console.log("===[SIGNUP]");
   const { email, password } = req.body;
   try {
     const data = await userModel.findOne({
